@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Chatbot</title>
+  <link rel="stylesheet" href="index2.css" />
+</head>
+<body>
+  <div class="chat-container">
+    <div class="chat-header">🤖 ChatBot</div>
+    <div class="chat-box" id="chat-box">
+      <div class="bot-message">Hi! How can I help you today?</div>
+    </div>
+    <div class="chat-input-area">
+      <input type="text" id="user-input" placeholder="Type your message..." />
+      <button onclick="sendMessage()">Send</button>
+    </div>
+  </div>
+
+  
+  <script src="https://cdn.botpress.cloud/webchat/v2.3/inject.js"></script>
+  <script src="https://files.bpcontent.cloud/2025/04/14/18/20250414180903-2WG1IWUI.js"></script>
+      
+  <script src="https://cdn.botpress.cloud/webchat/v0/inject.js"></script>
+  <script>
+    window.botpressWebChat.init({
+      "composerPlaceholder": "Chat with me!",
+      "botId": "your-bot-id-here",
+      "hostUrl": "https://cdn.botpress.cloud/webchat/v0",
+      "messagingUrl": "https://messaging.botpress.cloud",
+      "clientId": "your-bot-id-here",
+      "lazySocket": true,
+      "botName": "My Bot",
+      "stylesheet": "https://your-custom-style.css" // optional
+    });
+  </script>
+
+  <script>
+    function sendMessage() {
+      const input = document.getElementById("user-input");
+      const message = input.value.trim();
+      if (message === "") return;
+
+      const chatBox = document.getElementById("chat-box");
+
+      const userMsg = document.createElement("div");
+      userMsg.className = "user-message";
+      userMsg.textContent = message;
+      chatBox.appendChild(userMsg);
+
+      const botMsg = document.createElement("div");
+      botMsg.className = "bot-message";
+      botMsg.textContent = "You said: " + message;
+      chatBox.appendChild(botMsg);
+
+      input.value = "";
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+  </script>
+</body>
+</html>
